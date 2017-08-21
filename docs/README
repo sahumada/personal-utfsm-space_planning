@@ -1,0 +1,29 @@
+Prerequisites
+-------------
+
+* sudo apt-get install texlive-latex-base
+* sudo apt-get install texlive-lang-spanish
+
+Compile
+-------
+
+The Makefile should compile the ps version without any warnings.
+
+To create the viewable/printable document use:
+
+>     make <option>
+
+where *option* is one and only one of:
+
+    dvi --- Will create the .dvi file.  This is provided just for previewing, or if you like more the dvi files.
+
+    ps  --- Will create the PostScript file with extension .ps
+           This is the benchmark version to which all other compare
+           (e.g. pdf). This version does not contain hyperlinks.
+
+    pdf --- Will create the PDF file with extension .pdf
+        Notes:
+            1. hyperref may create some wrong links
+            2. Currently some packages are not (well) integrated with hyperref so the pagination may differ slightly from the *.ps version
+            3. it is possible to get overfull/underfull boxes (see 2.)
+            4. it is possible that pagination will vary slightly from the *.ps version (which is the reference format)

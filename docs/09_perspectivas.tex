@@ -1,0 +1,42 @@
+\section{Perspectivas de investigación\label{sec:perspectivas}}
+
+Para la resolución de este tipo de problemas de optimización, se puede seguir la siguiente
+metodología, la cual se esta utilizando en la actualidad por diversos software de
+estas características:
+
+\begin{itemize}
+\item Presentar los datos del problema en una estructura de datos, para poder manejar
+      todas las variables de una manera más simplificada y ordenada.
+\item Describir cómo sería la inserción de un cubo dentro del contenedor.
+\item Presentar un algoritmo de barrido de un solo paso que muestre todos los candidatos
+      a ser insertados, con su correspondiente espacio perdido y su complejidad asociada.
+\item Cómo representar los datos obtenidos en una estructura de datos.
+\end{itemize}
+
+\begin{enumerate}
+\item Se utiliza una forma estándar para conectar el caso de 2 dimensiones con el caso
+      de 3 dimensiones, en que el primero será la cara frontal del objeto tridimensional.
+      En el frente podemos distinguir vértices, bordes y celdas, de este modo, en cada
+      celda, se guarda la profundidad de ella. Esta información se guarda en listas doblemente
+      enlazadas separadamente. De esta manera se puede representar el interior de un container
+      o de un espacio confinado por medio de una estructura de datos.
+\item Al insertar un nuevo objeto (caja), la estructura de datos debe ser modificada, para
+      que represente la nueva realidad del frente del contenedor. Esto puede resumirse como
+      la inserción de un rectángulo, si lo pensamos como un área bidimensional.
+\item En el planteamiento de estos algoritmos podemos distinguir dos tipos fundamentales: \\
+Heurísticas:
+\begin{itemize}
+ \item Constructiva.
+ \item Búsqueda local por entornos.
+ \item Cadenas de movimiento.
+\end{itemize}
+Metaheurísticas:
+\begin{itemize}
+ \item Basado en Búsqueda por entornos: Búsqueda tabú; Búsqueda en entorno variable, VNS; GRASP.
+ \item Evolutivos basados en población: Algoritmos genéticos; Algoritmos meméticos; Scatter Search.
+\end{itemize}
+\item Finalmente, los datos obtenidos deben ser representados en una estructura de datos de
+      la misma forma en que fueron definidos inicialmente, a modo de mantener una coherencia
+      entre la información inicial y la información final, ya que generalmente esto puede
+      verse como una capa dentro de algún software especifico de optimización.
+\end{enumerate}

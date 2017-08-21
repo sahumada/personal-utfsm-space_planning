@@ -1,0 +1,62 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[paper=letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[dvips]{epsfig}
+\usepackage[utf8]{inputenc}
+\usepackage[mathcal]{euscript}
+\usepackage{tabularx}
+
+\begin{document}
+
+\title{\textsc{Space Planning Problem 3D}}
+\author{\large{Sergio Ahumada Navea} \\ \texttt{san@inf.utfsm.cl}}
+\date{29 de julio de 2005}
+
+\maketitle
+
+\begin{abstract}
+Dado un conjunto finito de cubos, se trata de
+determinar sus posiciones dentro de un ``bin'' o ``contenedor'',
+debiendo cumplir ciertas restricciones de conteni\-bi\-li\-dad y superposición.
+Estas condiciones dicen relación con el hecho de que todos los objetos
+deben quedar dentro del contenedor,
+así como ninguno de ellos puede quedar superpuesto con sus adyacentes.
+Este problema es $\mathcal{NP}$-duro en el sentido que no es posible
+resolverlo usando técnicas completas en tiempos reducidos, ya que a
+medida que crece la cantidad de objetos la computación aumenta en orden
+exponencial.
+Este trabajo presenta un modelo de programación lineal mixta
+para representar el problema de \texttt{carga de container} y lo intenta
+resolver utilizando la herramienta \textit{Lindo}.
+\end{abstract}
+
+\input{01_introduccion}
+
+\input{02_estado_del_arte}
+
+\input{03_ejemplo}
+\pagebreak
+
+\input{04_alternativas_modelamiento}
+
+\input{05_modelo_general}
+\pagebreak
+
+\input{06_especificacion}
+\pagebreak
+
+\input{07_benchmark}
+\pagebreak
+
+\input{08_resolucion}
+\pagebreak
+
+\input{09_perspectivas}
+
+\input{10_conclusiones}
+
+\nocite{*}
+\bibliography{referencias}
+\bibliographystyle{plain}
+
+\end{document}

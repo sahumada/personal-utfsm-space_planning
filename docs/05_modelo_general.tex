@@ -1,0 +1,62 @@
+\section{Modelo general\label{sec:modelo_general}}
+
+\begin{itemize}
+\item {\bf Objetivo} \\[6pt]
+Ubicar $n=12$ objetos en una superficie cúbica $S$, sin que
+ellos se traslapen y quepan en su totalidad, minimizando su
+volumen.
+\item {\bf Función Objetivo} \\[6pt]
+$\min z = D$
+\item {\bf Parámetros} \\[6pt]
+\begin{tabular}{p{0.5cm} l}
+$H$      & Alto fijo de la superficie rectangular $S$ \\
+$W$      & Ancho fijo de la superficie rectangular $S$ \\
+$n$      & Número de objetos a posicionar en $S$ \\
+$h_i$    & Alto del objeto $i$ $(1 \le i \le n)$ \\
+$w_i$    & Ancho del objeto $i$ $(1 \le i \le n)$ \\
+$d_i$    & Profundidad del objeto $i$ $(1 \le i \le n)$ \\
+\end{tabular}
+\item {\bf Variables} \\[6pt]
+\begin{tabular}{p{0.5cm} l}
+$D$      & Profundidad de la superficie rectangular $S$ \\
+$x_i$    & Coordenada inferior izquierda trasera en el eje $X$ del objeto $i$ $(1 \le i \le n)$ \\
+$y_i$    & Coordenada inferior izquierda trasera en el eje $Y$ del objeto $i$ $(1 \le i \le n)$ \\
+$z_i$    & Coordenada inferior izquierda trasera en el eje $Z$ del objeto $i$ $(1 \le i \le n)$ \\
+$p_{ij}$ & Variable de codificación del objeto $i$ respecto al objeto $j$ $(1 \le i < j \le n)$ \\
+$q_{ij}$ & Variable de codificación del objeto $i$ respecto al objeto $j$ $(1 \le i < j \le n)$ \\
+$r_{ij}$ & Variable de codificación del objeto $i$ respecto al objeto $j$ $(1 \le i < j \le n)$ \\
+\end{tabular} \\
+\pagebreak
+\item {\bf Restricciones}
+\begin{itemize}
+\item[1.] Mantención de los objetos dentro de la superficie $S$: \\[6pt]
+\begin{tabular}{p{9.5cm} l}
+$x_i + w_i \le W$, & $1 \le i \le n$ \\
+$y_i + h_i \le H$, & $1 \le i \le n$ \\
+$z_i + d_i \le D$, & $1 \le i \le n$ \\
+\end{tabular} \\
+\item[2.] Restricciones de superposición de los objetos: \\[6pt]
+\begin{tabular}{p{9.5cm} l}
+$x_i + w_i \le x_j + M \times (p_{ij} + q_{ij} + r_{ij})$, & $1 \le i < j \le n$ \\
+$y_i + h_i \le y_j + M \times (1 + p_{ij} + q_{ij} - r_{ij})$, & $1 \le i < j \le n$ \\
+$x_i - w_j \ge x_j - M \times (1 + p_{ij} - q_{ij} + r_{ij})$, & $1 \le i < j \le n$ \\
+$y_i - h_j \ge y_j - M \times (2 + p_{ij} - q_{ij} - r_{ij})$, & $1 \le i < j \le n$ \\
+$z_i + d_i \le z_j + M \times (1 - p_{ij} + q_{ij} + r_{ij})$, & $1 \le i < j \le n$ \\
+$z_i - d_j \ge z_j - M \times (2 - p_{ij} + q_{ij} - r_{ij})$, & $1 \le i < j \le n$ \\
+\end{tabular} \\
+\item[2.1] Eliminación de casos no posibles: \\[6pt]
+\begin{tabular}{p{9.5cm} l}
+$p_{ij} + q_{ij} \le 1$ & $1 \le i < j \le n$ \\
+$p_{ij} + q_{ij} + r_{ij} \le 2$ & $1 \le i < j \le n$ \\
+\end{tabular} \\
+\item[3.] No negatividad de las variables enteras: \\[6pt]
+\begin{tabular}{p{0.6cm} r p{0.5cm} l}
+& $x_i, y_i, z_i \ge 0$, & & $1 \le i \le n$ \\
+\end{tabular} \vspace{5pt}
+\item[4.] Variables binarias: \\[6pt]
+\begin{tabular}{r p{0.5cm} l}
+$p_{ij}, q_{ij}, r_{ij} \in \{0,1\}$, & & $1 \le i < j \le n$ \\
+\end{tabular} \\
+\end{itemize}
+\end{itemize}
+

@@ -1,0 +1,49 @@
+\section{Introducción\label{sec:introduccion}}
+
+Los problemas de Carga de Containers (Container Loading Problem) y
+los problemas de Empaquetamiento (Bin Packing Problem) son ampliamente
+usados en áreas como Diseño de circuitos VLSI, Carga de pallets, Carga
+de camiones, etc. \\
+
+En general, los problemas de Space Planning 3D han acaparado la atención
+de muchos investigadores en el último tiempo, donde cada uno ha desarrollado
+diversas técnicas de resolución que hacen el problema más interesante. Entre
+las variantes de este problema están aquellos que sólo utilizan un tipo de cubos;
+aquellos denominados ``guillotinables'' o que intentan realizar un orden tal que
+es posible cortar de forma perfecta el contenedor con un plano imaginario; aquellos
+en que se deben depositar los objetos de arriba hacia abajo, etc. \\
+
+Los problemas de empaquetamiento (Bin Packing Problem) describen la
+consistencia de combinaciones de pequeños objetos geométricos en grandes
+superficies. En el caso de problemas del tipo Bin Packing las
+superficies, $S$, son definidas vacias y se necesita posicionar una
+cierta cantidad, $n$, de objetos en su interior. Los objetos no pueden
+superponerse ni pueden quedar fuera de la superficie definida, estos
+objetos no podrán rotarse, debido a que en el caso 3D la cantidad de
+posibles posiciones de un objeto dificulta la resolución del problema.
+Además, todos los objetos deben ser puestos en su totalidad en $S$. \\
+
+En este trabajo se presenta el problema combinatorial, en la cual se
+trata de ubicar objetos de ciertas dimensiones dadas sobre un volumen
+determinado sin que ellos salgan de dicho volumen o se traslapen. \\
+
+La sección~\ref{sec:estado_del_arte} da una mirada general a como es visto
+el problema en la actualidad, destacando algunos trabajos sobresalientes.
+En la sección~\ref{sec:ejemplo}, se enuncia una instancia sencilla del problema
+a modo de ejemplo. En la sección~\ref{sec:alternativas_modelamiento}, se describe en forma
+matemática el problema presentado como ejemplo, dando a conocer las
+posibles maneras de modelarlo. \\
+
+Se propone en la sección~\ref{sec:modelo_general} un modelo matemático de programación
+lineal mixto para su posterior resolución, sin considerar aún la
+rotación de los objetos como posible solución.
+Utilizando la herramienta \textit{Lingo}, en la sección~\ref{sec:especificacion},
+se formula el modelo general de forma de poder resolver automáticamente el
+problema. \\
+
+En la sección~\ref{sec:resolucion}, se muestran resultados obtenidos utilizando el
+modelo propuesto y la herramienta \textit{Lindo} para resolver el problema.
+En la sección~\ref{sec:perspectivas}, se muestran algunos modelos y técnicas
+utilizadas para la resolución de este tipo de problemas.
+Finalmente, se exponen en la sección~\ref{sec:conclusiones} algunas de las
+conclusiones obtenidas de este trabajo.

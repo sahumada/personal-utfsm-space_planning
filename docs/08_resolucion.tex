@@ -1,0 +1,149 @@
+\section{Resolución\label{sec:resolucion}}
+Se analizó un caso de prueba muy sencillo debido a la cantidad de restricciones
+que se deben escribir a medida que aumentan la cantidad de objetos. Se dispondrá
+de tres objetos, dos de ellos de dimensiones $(2, 2, 4)$ y uno de dimensiones $(4, 2, 4)$.\\
+
+El caso de prueba consiste en una superficie $S_1$ de dimensiones
+$H=4$, $W=4$ y $D=4$ de alto , ancho y profundidad respectivamente. El
+cuadro~\ref{tabla:dos} muestra $3$ objetos que sabe caben en la
+supeficie $S_1$. Para resolverlo, sólo se considero minimizar la profundidad
+del contenedor; el valor de $M$ se fijó en 1000.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{||c|c c c||}
+\hline\hline
+$i$ & $w_i$ & $h_i$ & $d_i$ \\ \hline
+1 & 2 & 2 & 4 \\
+2 & 2 & 2 & 4 \\
+3 & 4 & 2 & 4 \\ \hline\hline
+\end{tabular}
+\caption{Objetos para analizar el primer caso de prueba}
+\label{tabla:dos}
+\end{center}
+\end{table}
+
+Con estos datos se obtuvo el siguiente modelo de programación lineal, como muestra
+el cuadro~\ref{tab:table_1}:\\
+
+\begin{table}[!htb]
+\scriptsize
+\begin{verbatim}
+MIN DT
+
+ST
+  ! Mantencion objetos dentro de la superficie
+   X_1 <= 2
+   X_2 <= 2
+   X_3 <= 0
+   Y_1 <= 2
+   Y_2 <= 2
+   Y_3 <= 2
+   - DT + Z_1 <= - 4
+   - DT + Z_2 <= - 4
+   - DT + Z_3 <= - 4
+  ! Superposicion de objetos
+   - 1000 * P_1_2 - 1000 * Q_1_2 - 1000 * R_1_2 + X_1 - X_2 <= - 2
+   - 1000 * P_1_3 - 1000 * Q_1_3 - 1000 * R_1_3 + X_1 - X_3 <= - 2
+   - 1000 * P_2_3 - 1000 * Q_2_3 - 1000 * R_2_3 + X_2 - X_3 <= - 2
+     1000 * P_1_2 - 1000 * Q_1_2 + 1000 * R_1_2 + X_1 - X_2 >= - 998
+     1000 * P_1_3 - 1000 * Q_1_3 + 1000 * R_1_3 + X_1 - X_3 >= - 996
+     1000 * P_2_3 - 1000 * Q_2_3 + 1000 * R_2_3 + X_2 - X_3 >= - 996
+   - 1000 * P_1_2 - 1000 * Q_1_2 + 1000 * R_1_2 + Y_1 - Y_2 <=   998
+   - 1000 * P_1_3 - 1000 * Q_1_3 + 1000 * R_1_3 + Y_1 - Y_3 <=   998
+   - 1000 * P_2_3 - 1000 * Q_2_3 + 1000 * R_2_3 + Y_2 - Y_3 <=   998
+     1000 * P_1_2 - 1000 * Q_1_2 - 1000 * R_1_2 + Y_1 - Y_2 >= - 1998
+     1000 * P_1_3 - 1000 * Q_1_3 - 1000 * R_1_3 + Y_1 - Y_3 >= - 1998
+     1000 * P_2_3 - 1000 * Q_2_3 - 1000 * R_2_3 + Y_2 - Y_3 >= - 1998
+     1000 * P_1_2 - 1000 * Q_1_2 - 1000 * R_1_2 + Z_1 - Z_2 <=   996
+     1000 * P_1_3 - 1000 * Q_1_3 - 1000 * R_1_3 + Z_1 - Z_3 <=   996
+     1000 * P_2_3 - 1000 * Q_2_3 - 1000 * R_2_3 + Z_2 - Z_3 <=   996
+   - 1000 * P_1_2 + 1000 * Q_1_2 - 1000 * R_1_2 + Z_1 - Z_2 >= - 1996
+   - 1000 * P_1_3 + 1000 * Q_1_3 - 1000 * R_1_3 + Z_1 - Z_3 >= - 1996
+   - 1000 * P_2_3 + 1000 * Q_2_3 - 1000 * R_2_3 + Z_2 - Z_3 >= - 1996
+   ! Restricciones debiles
+   P_1_2 + Q_1_2 + R_1_2 <= 2
+   P_1_3 + Q_1_3 + R_1_3 <= 2
+   P_2_3 + Q_2_3 + R_2_3 <= 2
+   P_1_2 + Q_1_2 <= 1
+   P_1_3 + Q_1_3 <= 1
+   P_2_3 + Q_2_3 <= 1
+END
+\end{verbatim}
+\end{table}
+\pagebreak
+
+\begin{table}[!htb]
+\scriptsize
+\begin{verbatim}
+   !Variables binarias
+   INT P_1_2
+   INT P_1_3
+   INT P_2_3
+   INT Q_1_3
+   INT Q_1_2
+   INT Q_2_3
+   INT R_1_2
+   INT R_1_3
+   INT R_2_3
+   ! Variables no negativas
+   GIN X_1
+   GIN X_2
+   GIN X_3
+   GIN Y_1
+   GIN Y_2
+   GIN Y_3
+   GIN Z_1
+   GIN Z_2
+   GIN Z_3
+\end{verbatim}
+\caption{Modelo de programación lineal mixto: Formato Lindo}
+\label{tab:table_1}
+\end{table}
+
+Luego se procedió a correr el programa llegando al resultado
+que muestra a continua\-ción el cuadro~\ref{tab:table_3}: \\
+
+\begin{table}[!htb]
+\scriptsize
+\begin{verbatim}
+ OBJECTIVE FUNCTION VALUE
+
+ 1)                 4.000000000
+
+ VARIABLES                      VALUE             REDUCED COST
+ DT                       4.000000000              0.000000000
+ X_1                      0.000000000              0.000000000
+ X_2                      2.000000000              0.000000000
+ X_3                      0.000000000              0.000000000
+ Y_1                      0.000000000              0.000000000
+ Y_2                      0.000000000              0.000000000
+ Y_3                      2.000000000              0.000000000
+ Z_1                      0.000000000              0.000000000
+ Z_2                      0.000000000              0.000000000
+ Z_3                      0.000000000              0.000000000
+ P_1_2                    0.000000000              0.000000000
+ Q_1_2                    0.000000000              0.000000000
+ R_1_2                    0.000000000              0.000000000
+ P_1_3                    0.000000000              0.000000000
+ Q_1_3                    0.000000000              0.000000000
+ R_1_3                    1.000000000              0.000000000
+ P_2_3                    0.000000000              0.000000000
+ Q_2_3                    0.000000000              0.000000000
+ R_2_3                    1.000000000              0.000000000
+\end{verbatim}
+\caption{Resultado del modelo de programación lineal mixto}
+\label{tab:table_3}
+\end{table}
+\normalsize
+
+Se puede notar que el total de los objetos fue posicionado correctamente.
+Se realizaron pruebas utilizando distintos casos de prueba y distintos métodos
+de resolución, los cuales validarian el modelo para el caso específico que
+estamos analizando. \\
+
+La interpretación de los datos resultado nos indica que la profundidad óptima
+del contenedor es de 4 unidades; las coordenas del objeto 1 son $(0, 0, 0)$ y
+las del objeto 2 son $(0, 2, 0)$ considerando la notación $(x, y, z)$. Además,
+la variable $p_{12}$ queda activa, por lo cual se cumple sólo una restricción
+de superposición indicando que el objeto 1 esta arriba del objeto 2.

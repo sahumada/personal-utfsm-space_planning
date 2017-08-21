@@ -1,0 +1,70 @@
+\section{Especificación usando Lingo\label{sec:especificacion}}
+
+\scriptsize
+\begin{verbatim}
+MODEL:
+TITLE Bin Packing 3D;
+
+SETS:
+ WIDTH  / 1..3 /: X, W;
+ HEIGHT / 1..3 /: Y, H;
+ DEPTH  / 1..3 /: Z, D;
+ LINKS (WIDTH, HEIGHT) | &2 #GT# &1: P, Q, R;
+ENDSETS
+
+DATA:
+ HT = 4;
+ WT = 4;
+ MT = 1000;
+ W = 2 2 4;
+ H = 2 2 2;
+ D = 4 4 4;
+ENDDATA
+
+! Funcion objetivo;
+[FUNC_OBJ] MIN = DT;
+
+! Mantencion objetos dentro de la superficie;
+@FOR(WIDTH(I): [DENTRO_X] X(I) + W(I) <= WT);
+@FOR(HEIGHT(I):[DENTRO_Y] Y(I) + H(I) <= HT);
+@FOR(DEPTH(I): [DENTRO_Z] Z(I) + D(I) <= DT);
+
+! Superposicion de objetos;
+@FOR(LINKS(I,J) | I #LT# J: [SUPER1]
+    X(I) + W(I) <= X(J) + MT * (P(I,J) + Q(I,J) + R(I,J)));
+
+@FOR(LINKS(I,J) | I #LT# J: [SUPER2]
+    X(I) - W(J) >= X(J) - MT * (1 + P(I,J) - Q(I,J) + R(I,J)));
+
+@FOR(LINKS(I,J) | I #LT# J: [SUPER3]
+    Y(I) + H(I) <= Y(J) + MT * (1 + P(I,J) + Q(I,J) - R(I,J)));
+
+@FOR(LINKS(I,J) | I #LT# J: [SUPER4]
+    Y(I) - H(J) >= Y(J) - MT * (2 + P(I,J) - Q(I,J) - R(I,J)));
+
+@FOR(LINKS(I,J) | I #LT# J: [SUPER5]
+    Z(I) + D(I) <= Z(J) + MT * (1 - P(I,J) + Q(I,J) + R(I,J)));
+
+@FOR(LINKS(I,J) | I #LT# J: [SUPER6]
+    Z(I) - D(J) >= Z(J) - MT * (2 - P(I,J) + Q(I,J) - R(I,J)));
+
+! Restricciones debiles;
+@FOR(LINKS(I,J) | I #LT# J: [DEBIL1]
+    P(I,J) + Q(I,J) + R(I,J) <= 2);
+
+@FOR(LINKS(I,J) | I #LT# J: [DEBIL2]
+    P(I,J) + Q(I,J) <= 1);
+
+! Variables binarias;
+@FOR(LINKS: @BIN(P));
+@FOR(LINKS: @BIN(Q));
+@FOR(LINKS: @BIN(R));
+
+! Variables no negativas;
+@FOR(WIDTH: @GIN(X));
+@FOR(HEIGHT:@GIN(Y));
+@FOR(DEPTH: @GIN(Z));
+
+END
+\end{verbatim}
+\normalsize

@@ -1,0 +1,44 @@
+\section{Estado del Arte\label{sec:estado_del_arte}}
+
+El problema de empaquetamiento o planeación de espacio no sólo esta orientado
+a 3 dimensiones, si no que también podemos encontrar problemas de planeamiento
+en una y dos dimensiones. Actualmente no existen metodologías de resolución
+para este tipo de problemas en un tiempo polinomial, por lo que este tipo
+de problemas se clasifican como $\mathcal{NP}$-complejos. \\
+
+Existen, sin embargo, algoritmos como the \textit{First Fit Algorithm}, el cual
+posiciona los bloques, u objetos bidimensionales en el orden en que vienen
+llegando y busca el primer lograr de calce para cada uno. El problema es que
+este algoritmo, difiere del óptimo en aproximadamente un 70\% (Hoffman 1998, p. 171).
+Otra estrategia consiste en ordenar primero los objetos desde el más grande
+hasta llegar al más pequeño, sin embargo, este método, difiere también del
+óptimo, sin embargo, lo hace en aproximadamente un 22\%. \\
+
+Sin embargo, existen modelos más formales para plantear este tipo de problemas,
+dadas sus restricciones de espacio y posicionamiento. \\
+
+Por ejemplo, al momento de cortar una plancha de madera para construir una serie
+de muebles, es necesario minimizar la cantidad de espacio desperdiciado,
+producto de los cortes en la madera, a modo de maximizar la cantidad de
+paneles por plancha de madera (Planeación en 2D). \\
+
+Nosotros nos enfocaremos exclusivamente a la planeación en 3 dimensiones, la cual
+posee una amplia gama de aplicaciones, como pueden ser el almacenaje de carga en
+los aeroplanos, llenado de containeres en forma óptima y, en general, todo lo que
+concierne al llenado de espacios tridimensionales en forma óptima. \\
+
+En la actualidad existen software para llevar a cabo diversas tareas de llenado 3D
+en forma óptima, como es el caso de 3D Load PackPacker V.1.7x, el cual posee una
+base de datos con la información de todos los containeres que utiliza y todos los
+tamaños de paquetes para el posible llenado. De esta forma analiza todas las
+posibilidades y retorna la que menor espacio perdido tiene. Se ve que este método
+de comparaciones es bastante bueno en el caso de formas predefinidas, sin embargo,
+esto no es aplicable a casos que no se encuentran en la base de datos del SW en cuestión. \\
+
+Al problema de planeación en 3D se le pueden agregar ciertas modificaciones (Restricciones)
+como sería el caso de cargar un container, en el cual existen ciertos paquetes que no
+pueden estar con la tapa hacia abajo, otros que tienen que soportar a los que están más
+arriba, algunos que no tienen una forma regular, etc. Sin embargo nosotros desarrollaremos
+una simplificación de esto, en que todos los paquetes tienen una forma regular y pueden
+estar ubicados en cualquier parte del espacio limitado por nuestras restricciones de
+posición y ubicación (Traslape).

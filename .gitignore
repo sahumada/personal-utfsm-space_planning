@@ -1,0 +1,10 @@
+informe.aux
+informe.bbl
+informe.blg
+informe.dvi
+informe.log
+informe.pdf
+
+*.jpg
+*.o
+*.xcf
