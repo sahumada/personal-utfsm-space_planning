@@ -5,6 +5,9 @@ informe.dvi
 informe.log
 informe.pdf
 
+optimizacion-bb
+desplegar
+
 *.jpg
 *.o
 *.xcf
