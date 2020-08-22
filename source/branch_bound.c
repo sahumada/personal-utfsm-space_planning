@@ -74,7 +74,11 @@
 #include <math.h>
 #include <time.h>
 #include <stdarg.h>
-#include <values.h>
+#if __APPLE__
+  #include <limits.h>
+#else
+  #include <values.h>
+#endif
 #include "include/data_types.h"
 #include "include/prototipos.h"
 

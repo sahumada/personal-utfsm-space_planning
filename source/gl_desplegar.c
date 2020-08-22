@@ -12,7 +12,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <GL/glut.h>
+#if __APPLE__
+  #define GL_SILENCE_DEPRECATION
+  #include <GLUT/glut.h>
+#else
+  #include <GL/glut.h>
+#endif
 #include "include/data_types.h"
 
 GLfloat vertices [4][3] = {{-1.0,-1.0,1.0},{1.0,-1.0,1.0},{1.0,1.0,1.0},{-1.0,1.0,1.0}};
